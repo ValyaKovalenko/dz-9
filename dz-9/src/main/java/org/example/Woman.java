@@ -1,9 +1,16 @@
 package org.example;
 public class Woman extends Person {
     private String partnerLastName;
+    private String initialLastName;
 
     public Woman(String firstName, String lastName, int age) {
         super(firstName, lastName, age, "female");
+        this.initialLastName = lastName;
+    }
+
+    // Метод повернення прізвища до початкового прізвища
+    private void revertToInitialLastName() {
+        setLastName(initialLastName);
     }
 
     // Геттер та сеттер для partnerLastName
@@ -16,11 +23,10 @@ public class Woman extends Person {
     }
 
     // Метод для розірвання партнерства (повернення до попереднього прізвища)
+    @Override
     public void deregisterPartnership(boolean returnToPreviousLastName) {
         if (returnToPreviousLastName) {
-            Man partner = new Man("", partnerLastName, 0);
-            setLastName(partner.getLastName());
-            partner.setLastName(partnerLastName);
+            revertToInitialLastName();
         }
         setPartnerLastName(null);
     }
