@@ -1,5 +1,5 @@
 package org.example;
- abstract public class Person {
+public class Person {
     private String firstName;
     private String lastName;
     private int age;
@@ -50,6 +50,4 @@ package org.example;
     public boolean isRetired() {
         return age >= pensionAge;
     }
-
-    abstract public void deregisterPartnership(boolean returnToPreviousLastName);
- }
+}
